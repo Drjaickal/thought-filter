@@ -13,11 +13,16 @@ export class UserService {
         return userRepository.findByEmail(email);
     }
 
+    async getUserByClerkId(clerkId: string) {
+        return userRepository.findByClerkId(clerkId);
+    }
+
     async createUser(data: {
+        clerkId: string;
         email: string;
-        name?: string;
+        name?: string | null;
     }) {
-        const existingUser = await userRepository.findByEmail(data.email);
+        const existingUser = await userRepository.findByClerkId(data.clerkId);
 
         if (existingUser) {
             throw new Error("User already exists");

@@ -21,12 +21,44 @@ export class UserRepository {
         });
     }
 
+    async findByClerkId(clerkId: string) {
+        return prisma.user.findUnique({
+            where: {
+                clerkId,
+            },
+        });
+    }
+
     async create(data: {
+        clerkId: string;
         email: string;
-        name?: string;
+        name?: string | null;
     }) {
         return prisma.user.create({
             data,
+        });
+    }
+
+    async updateByClerkId(
+        clerkId: string,
+        data: {
+            email?: string;
+            name?: string | null;
+        }
+    ) {
+        return prisma.user.update({
+            where: {
+                clerkId,
+            },
+            data,
+        });
+    }
+
+    async deleteByClerkId(clerkId: string) {
+        return prisma.user.delete({
+            where: {
+                clerkId,
+            },
         });
     }
 
