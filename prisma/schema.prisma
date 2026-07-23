@@ -20,6 +20,7 @@ enum RewriteTone {
 
 model User {
   id         String      @id @default(cuid())
+  clerkId    String      @unique
   email      String      @unique
   name       String?
   thoughts   Thought[]
