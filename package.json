@@ -10,6 +10,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@clerk/backend": "^3.13.1",
     "@clerk/nextjs": "^7.5.22",
     "@google/genai": "^2.13.0",
     "@prisma/adapter-pg": "^7.9.0",
