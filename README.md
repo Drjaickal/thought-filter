@@ -16,6 +16,7 @@ Thought Filter is an AI-powered SaaS that rewrites emotional, unclear, or impuls
 
 ## ✨ Features
 
+- 🌗 Light & Dark Theme
 - 🤖 AI-powered thought rewriting using Google Gemini
 - 🎯 Multiple rewrite tones
   - Professional
