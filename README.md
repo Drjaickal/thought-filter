@@ -199,7 +199,7 @@ npm run build
 Built by **YOUR_NAME**
 
 GitHub:
-https://github.com/YOUR_USERNAME
+[https://github.com/](https://github.com/Drjaickal)
 
 ---
 
