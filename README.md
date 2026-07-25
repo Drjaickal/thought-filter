@@ -6,39 +6,199 @@
 
 
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧠 Thought Filter
 
-## Getting Started
+> Transform emotional thoughts into clear, confident, and professional communication using AI.
 
-First, run the development server:
+Thought Filter is an AI-powered SaaS that rewrites emotional, unclear, or impulsive messages into polished communication. It helps users express themselves professionally while preserving their original intent.
+
+---
+
+## ✨ Features
+
+- 🤖 AI-powered thought rewriting using Google Gemini
+- 🎯 Multiple rewrite tones
+  - Professional
+  - Corporate
+  - Friendly
+  - Executive
+- 📜 Thought history
+- 📋 One-click copy
+- 🗑 Delete previous thoughts
+- 🔐 Secure authentication with Clerk
+- ⚡ Fast Next.js App Router architecture
+- 📱 Responsive modern UI
+- 🔍 SEO optimized
+- 🛡 Production-ready architecture
+
+---
+
+## 🛠 Tech Stack
+
+| Technology | Purpose |
+|------------|---------|
+| Next.js 16 | Full-stack framework |
+| React 19 | UI |
+| TypeScript | Type safety |
+| Tailwind CSS v4 | Styling |
+| Prisma ORM | Database ORM |
+| PostgreSQL (Neon) | Database |
+| Clerk | Authentication |
+| Google Gemini | AI rewriting |
+| Vercel | Deployment |
+
+---
+
+## 📂 Project Structure
+
+```
+app/
+components/
+hooks/
+services/
+    ai/
+    database/
+    thought/
+types/
+prisma/
+```
+
+Architecture:
+
+```
+Route
+   ↓
+Service
+   ↓
+Repository
+   ↓
+Prisma
+   ↓
+PostgreSQL
+```
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/thought-filter.git
+
+cd thought-filter
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure environment variables
+
+Create a `.env` file.
+
+```env
+DATABASE_URL=
+
+GEMINI_API_KEY=
+
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+
+CLERK_SECRET_KEY=
+```
+
+### 4. Generate Prisma Client
+
+```bash
+npx prisma generate
+```
+
+### 5. Run database migrations
+
+```bash
+npx prisma migrate dev
+```
+
+### 6. Start development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 📸 Screenshots
 
-To learn more about Next.js, take a look at the following resources:
+> Add screenshots here after deployment.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Landing Page
+- Dashboard
+- Rewrite Result
+- History
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🔒 Security
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Clerk Authentication
+- Protected API Routes
+- Server-side Validation
+- Secure Prisma Queries
+- Production Security Headers
+
+---
+
+## 📈 Roadmap
+
+- [ ] Rate limiting
+- [ ] Stripe subscriptions
+- [ ] Favorites
+- [ ] Search & filters
+- [ ] Export to PDF
+- [ ] Analytics dashboard
+- [ ] Team workspaces
+
+---
+
+## 🧪 Scripts
+
+```bash
+npm run dev
+npm run build
+npm run lint
+```
+
+---
+
+## 🌐 Deployment
+
+Optimized for deployment on **Vercel**.
+
+```bash
+npm run build
+```
+
+---
+
+## 👨‍💻 Author
+
+Built by **YOUR_NAME**
+
+GitHub:
+https://github.com/YOUR_USERNAME
+
+---
+
+## 📄 License
+
+MIT License-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
