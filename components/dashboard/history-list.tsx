@@ -22,33 +22,27 @@ export default function HistoryList({
 
     return (
         <section className="mx-auto mt-10 max-w-7xl">
-
             <div className="mb-8 flex items-center justify-between">
-
                 <div>
-
-                    <h2 className="text-3xl font-black text-white">
+                    <h2 className="text-3xl font-black text-foreground">
                         Rewrite History
                     </h2>
 
-                    <p className="mt-2 text-zinc-400">
+                    <p className="mt-2 text-muted">
                         View, copy or delete your previous AI rewrites.
                     </p>
-
                 </div>
 
-                <span className="rounded-full bg-orange-500/10 px-4 py-2 text-sm font-medium text-orange-400">
+                <span className="rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
                     {history.length}{" "}
                     {history.length === 1 ? "Rewrite" : "Rewrites"}
                 </span>
-
             </div>
 
             {history.length === 0 ? (
                 <EmptyState />
             ) : (
                 <div className="space-y-6">
-
                     {history.map((thought) => (
                         <HistoryCard
                             key={thought.id}
@@ -57,10 +51,8 @@ export default function HistoryList({
                             onDelete={onDelete}
                         />
                     ))}
-
                 </div>
             )}
-
         </section>
     );
 }

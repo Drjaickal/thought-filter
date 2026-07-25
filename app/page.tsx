@@ -6,15 +6,14 @@ import HowItWorks from "@/components/landing/how-it-works";
 import Pricing from "@/components/landing/pricing";
 import Testimonials from "@/components/landing/testimonials";
 import Link from "next/link";
+import { ThemeToggle } from "@/components/theme/theme-toggle";
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-[#09090B] text-white">
-
+    <main className="min-h-screen bg-background text-foreground transition-colors duration-300">
       {/* Navbar */}
 
-      <header className="sticky top-0 z-50 border-b border-zinc-800/70 bg-[#09090B]/80 backdrop-blur-xl">
-
+      <header className="sticky top-0 z-50 border-b border-border bg-card/80 backdrop-blur-xl">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
 
           <Link
@@ -22,30 +21,30 @@ export default function HomePage() {
             className="text-2xl font-black tracking-tight"
           >
             Thought
-            <span className="text-orange-500">
+            <span className="text-primary">
               Filter
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-8 text-sm text-zinc-400 md:flex">
+          <nav className="hidden items-center gap-8 text-sm text-muted md:flex">
 
             <a
               href="#features"
-              className="transition hover:text-white"
+              className="transition hover:text-primary"
             >
               Features
             </a>
 
             <a
               href="#how-it-works"
-              className="transition hover:text-white"
+              className="transition hover:text-primary"
             >
               How It Works
             </a>
 
             <a
               href="#pricing"
-              className="transition hover:text-white"
+              className="transition hover:text-primary"
             >
               Pricing
             </a>
@@ -53,6 +52,7 @@ export default function HomePage() {
           </nav>
 
           <div className="flex items-center gap-3">
+            <ThemeToggle />
 
             <Link
               href="/sign-in"

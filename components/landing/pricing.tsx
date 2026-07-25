@@ -35,125 +35,80 @@ const plans = [
 
 export default function Pricing() {
     return (
-        <section className="bg-[#09090B] py-28">
-
+        <section className="bg-background py-28 transition-colors duration-300">
             <div className="mx-auto max-w-7xl px-6">
-
                 <div className="mb-16 text-center">
-
-                    <span className="text-sm font-semibold uppercase tracking-[0.3em] text-orange-500">
+                    <span className="text-primary text-sm font-semibold uppercase tracking-[0.3em]">
                         Pricing
                     </span>
 
-                    <h2 className="mt-4 text-5xl font-black text-white">
+                    <h2 className="mt-4 text-5xl font-black text-foreground">
                         Simple pricing.
                     </h2>
 
-                    <p className="mx-auto mt-6 max-w-2xl text-lg text-zinc-400">
+                    <p className="text-muted mx-auto mt-6 max-w-2xl text-lg">
                         Start free today. Upgrade when you need more power.
                     </p>
-
                 </div>
 
                 <div className="grid gap-8 lg:grid-cols-2">
-
                     {plans.map((plan) => (
-
                         <div
                             key={plan.name}
-                            className={`rounded-3xl border p-10 transition duration-300 ${plan.featured
-                                    ? "border-orange-500 bg-gradient-to-b from-orange-500/10 to-zinc-900 shadow-[0_0_60px_rgba(249,115,22,0.15)]"
-                                    : "border-zinc-800 bg-zinc-900/60"
+                            className={`glass rounded-3xl p-10 transition-all duration-300 hover:-translate-y-2 ${plan.featured
+                                    ? "border-primary shadow-glow"
+                                    : "hover:border-primary hover:shadow-glow"
                                 }`}
                         >
-
                             {plan.featured && (
-
-                                <span className="mb-6 inline-flex rounded-full bg-orange-500 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
-
+                                <span className="bg-primary text-primary-foreground mb-6 inline-flex rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-wide">
                                     Coming Soon
-
                                 </span>
-
                             )}
 
-                            <h3 className="text-3xl font-black text-white">
-
+                            <h3 className="text-3xl font-black text-foreground">
                                 {plan.name}
-
                             </h3>
 
-                            <div className="mt-6 text-5xl font-black text-orange-500">
-
+                            <div className="text-primary mt-6 text-5xl font-black">
                                 {plan.price}
-
                             </div>
 
-                            <p className="mt-4 text-zinc-400">
-
-                                {plan.description}
-
-                            </p>
+                            <p className="text-muted mt-4">{plan.description}</p>
 
                             <ul className="mt-10 space-y-4">
-
                                 {plan.features.map((feature) => (
-
                                     <li
                                         key={feature}
-                                        className="flex items-center gap-3 text-zinc-300"
+                                        className="text-foreground flex items-center gap-3"
                                     >
-
-                                        <span className="text-orange-500">
-
-                                            ✓
-
-                                        </span>
-
+                                        <span className="text-primary font-bold">✓</span>
                                         {feature}
-
                                     </li>
-
                                 ))}
-
                             </ul>
 
                             <div className="mt-12">
-
                                 {plan.featured ? (
-
                                     <button
                                         disabled
-                                        className="w-full cursor-not-allowed rounded-xl bg-zinc-800 py-4 font-semibold text-zinc-400"
+                                        className="bg-muted text-muted-foreground w-full cursor-not-allowed rounded-xl py-4 font-semibold"
                                     >
-
                                         {plan.button}
-
                                     </button>
-
                                 ) : (
-
                                     <Link
                                         href="/dashboard"
-                                        className="block w-full rounded-xl bg-orange-500 py-4 text-center font-semibold text-white transition hover:bg-orange-600"
+                                        className="bg-primary text-primary-foreground hover:opacity-90 block w-full rounded-xl py-4 text-center font-semibold transition"
                                     >
-
                                         {plan.button}
-
                                     </Link>
-
                                 )}
-
                             </div>
-
                         </div>
-
                     ))}
-
                 </div>
-
             </div>
-
         </section>
     );
 }

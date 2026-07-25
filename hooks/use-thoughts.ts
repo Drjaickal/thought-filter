@@ -33,7 +33,11 @@ export function useThoughts() {
     }, []);
 
     useEffect(() => {
-        loadHistory();
+        async function init() {
+            await loadHistory();
+        }
+
+        void init();
     }, [loadHistory]);
 
     const handleSubmit = useCallback(async () => {

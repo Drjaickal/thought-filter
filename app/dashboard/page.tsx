@@ -25,33 +25,35 @@ export default function DashboardPage() {
     } = useThoughts();
 
     return (
-        <main className="min-h-screen bg-[#09090B] px-6 py-10">
-            <DashboardHeader totalThoughts={totalThoughts} />
+        <main className="min-h-screen bg-background text-foreground transition-colors duration-300">
+            <div className="mx-auto max-w-7xl px-6 py-10">
+                <DashboardHeader totalThoughts={totalThoughts} />
 
-            <DashboardStats
-                totalThoughts={totalThoughts}
-                totalRewrites={totalRewrites}
-            />
+                <DashboardStats
+                    totalThoughts={totalThoughts}
+                    totalRewrites={totalRewrites}
+                />
 
-            <RewriteForm
-                text={text}
-                tone={tone}
-                loading={loading}
-                onTextChange={setText}
-                onToneChange={setTone}
-                onSubmit={handleSubmit}
-            />
+                <RewriteForm
+                    text={text}
+                    tone={tone}
+                    loading={loading}
+                    onTextChange={setText}
+                    onToneChange={setTone}
+                    onSubmit={handleSubmit}
+                />
 
-            <LatestRewrite
-                result={result}
-                onCopy={copy}
-            />
+                <LatestRewrite
+                    result={result}
+                    onCopy={copy}
+                />
 
-            <HistoryList
-                thoughts={thoughts}
-                onCopy={copy}
-                onDelete={handleDelete}
-            />
+                <HistoryList
+                    thoughts={thoughts}
+                    onCopy={copy}
+                    onDelete={handleDelete}
+                />
+            </div>
         </main>
     );
 }
