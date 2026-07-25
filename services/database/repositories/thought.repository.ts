@@ -13,7 +13,14 @@ export class ThoughtRepository {
     async findAll() {
         return prisma.thought.findMany({
             include: {
-                rewrites: true,
+                rewrites: {
+                    orderBy: {
+                        createdAt: "desc",
+                    },
+                },
+            },
+            orderBy: {
+                createdAt: "desc",
             },
         });
     }
@@ -24,7 +31,11 @@ export class ThoughtRepository {
                 id,
             },
             include: {
-                rewrites: true,
+                rewrites: {
+                    orderBy: {
+                        createdAt: "desc",
+                    },
+                },
             },
         });
     }
@@ -35,7 +46,11 @@ export class ThoughtRepository {
                 userId,
             },
             include: {
-                rewrites: true,
+                rewrites: {
+                    orderBy: {
+                        createdAt: "desc",
+                    },
+                },
             },
             orderBy: {
                 createdAt: "desc",

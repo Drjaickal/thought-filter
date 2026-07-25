@@ -1,7 +1,8 @@
+import { RewriteTone } from "@prisma/client";
+
+import { rewriteText } from "../ai/rewrite";
 import { rewriteRepository } from "../database/repositories/rewrite.repository";
 import { thoughtRepository } from "../database/repositories/thought.repository";
-import { rewriteText } from "../ai/rewrite";
-import { RewriteTone } from "@prisma/client";
 
 class ThoughtService {
     async createThought(data: {
@@ -28,14 +29,16 @@ class ThoughtService {
         userId: string;
         tone: RewriteTone;
     }) {
-        const thought = await thoughtRepository.create({
-            originalText: data.originalText,
-            userId: data.userId,
-        });
-
+        // Get AI response first
         const aiResponse = await rewriteText({
             text: data.originalText,
             tone: data.tone,
+        });
+
+        // Save thought only if AI succeeds
+        const thought = await thoughtRepository.create({
+            originalText: data.originalText,
+            userId: data.userId,
         });
 
         const rewrite = await rewriteRepository.create({

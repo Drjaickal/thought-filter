@@ -4,9 +4,11 @@ import { useCallback, useEffect, useState } from "react";
 
 import type { Thought } from "@/types/thought";
 
+const DEFAULT_TONE = "PROFESSIONAL";
+
 export function useThoughts() {
     const [text, setText] = useState("");
-    const [tone, setTone] = useState("PROFESSIONAL");
+    const [tone, setTone] = useState(DEFAULT_TONE);
     const [loading, setLoading] = useState(false);
 
     const [result, setResult] = useState("");
@@ -14,13 +16,15 @@ export function useThoughts() {
 
     const loadHistory = useCallback(async () => {
         try {
-            const response = await fetch("/api/thoughts");
+            const response = await fetch("/api/thoughts", {
+                cache: "no-store",
+            });
 
             if (!response.ok) {
-                throw new Error("Failed to load history");
+                throw new Error("Failed to load history.");
             }
 
-            const data = await response.json();
+            const data: Thought[] = await response.json();
 
             setThoughts(data);
         } catch (error) {
@@ -32,8 +36,12 @@ export function useThoughts() {
         loadHistory();
     }, [loadHistory]);
 
-    async function handleSubmit() {
-        if (!text.trim()) return;
+    const handleSubmit = useCallback(async () => {
+        const originalText = text.trim();
+
+        if (!originalText || loading) {
+            return;
+        }
 
         try {
             setLoading(true);
@@ -44,7 +52,7 @@ export function useThoughts() {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    originalText: text,
+                    originalText,
                     tone,
                 }),
             });
@@ -53,7 +61,7 @@ export function useThoughts() {
 
             if (!response.ok) {
                 throw new Error(
-                    data.error ?? "Something went wrong"
+                    data.error ?? "Something went wrong."
                 );
             }
 
@@ -68,19 +76,21 @@ export function useThoughts() {
             alert(
                 error instanceof Error
                     ? error.message
-                    : "Unknown error"
+                    : "Unknown error."
             );
         } finally {
             setLoading(false);
         }
-    }
+    }, [text, tone, loading, loadHistory]);
 
-    async function handleDelete(id: string) {
-        const ok = window.confirm(
+    const handleDelete = useCallback(async (id: string) => {
+        const confirmed = window.confirm(
             "Delete this thought permanently?"
         );
 
-        if (!ok) return;
+        if (!confirmed) {
+            return;
+        }
 
         try {
             const response = await fetch(`/api/thoughts/${id}`, {
@@ -90,7 +100,9 @@ export function useThoughts() {
             const data = await response.json();
 
             if (!response.ok) {
-                throw new Error(data.error);
+                throw new Error(
+                    data.error ?? "Delete failed."
+                );
             }
 
             setThoughts((prev) =>
@@ -102,16 +114,21 @@ export function useThoughts() {
             alert(
                 error instanceof Error
                     ? error.message
-                    : "Delete failed"
+                    : "Delete failed."
             );
         }
-    }
+    }, []);
 
-    async function copy(value: string) {
-        await navigator.clipboard.writeText(value);
+    const copy = useCallback(async (value: string) => {
+        try {
+            await navigator.clipboard.writeText(value);
+            alert("Copied!");
+        } catch (error) {
+            console.error(error);
+            alert("Failed to copy.");
+        }
+    }, []);
 
-        alert("Copied!");
-    }
     const totalThoughts = thoughts.length;
 
     const totalRewrites = thoughts.reduce(

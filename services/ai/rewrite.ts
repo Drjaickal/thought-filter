@@ -3,12 +3,7 @@ import { REWRITE_PROMPT } from "./prompts/rewrite.prompt";
 import { gemini } from "./providers/gemini";
 import { parseGeminiResponse } from "./parser";
 
-/**
- * Updated model.
- * Older "gemini-2.5-flash" is unavailable for new projects.
- */
 const MODEL = "gemini-3.5-flash-lite";
-
 const PROMPT_VERSION = "v1";
 
 export async function rewriteText(
@@ -21,29 +16,37 @@ Tone:
 ${request.tone}
 
 Message:
-${request.text}
+${request.text.trim()}
 `;
 
-    const response = await gemini.models.generateContent({
-        model: MODEL,
-        contents: prompt,
-    });
+    try {
+        const response = await gemini.models.generateContent({
+            model: MODEL,
+            contents: prompt,
+        });
 
-    const text = response.text;
+        const text = response.text?.trim();
 
-    if (!text) {
-        throw new Error("Gemini returned an empty response.");
+        if (!text) {
+            throw new Error("Gemini returned an empty response.");
+        }
+
+        const parsed = parseGeminiResponse(text);
+
+        return {
+            rewrittenText: parsed.rewrittenText,
+            intent: parsed.intent,
+            emotion: parsed.emotion,
+            audience: parsed.audience,
+            toxicity: parsed.toxicity,
+            model: MODEL,
+            promptVersion: PROMPT_VERSION,
+        };
+    } catch (error) {
+        console.error("Gemini rewrite failed:", error);
+
+        throw new Error(
+            "Unable to rewrite your thought at the moment. Please try again."
+        );
     }
-
-    const parsed = parseGeminiResponse(text);
-
-    return {
-        rewrittenText: parsed.rewrittenText,
-        intent: parsed.intent,
-        emotion: parsed.emotion,
-        audience: parsed.audience,
-        toxicity: parsed.toxicity,
-        model: MODEL,
-        promptVersion: PROMPT_VERSION,
-    };
 }
