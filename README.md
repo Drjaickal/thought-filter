@@ -139,10 +139,16 @@ http://localhost:3000
 
 > Add screenshots here after deployment.
 
-- Landing Page
-- Dashboard
-- Rewrite Result
-- History
+- Landing Page -- <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/0823c792-5678-49f9-8417-8a0a26f2ce6a" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a961723c-63e6-4f65-98b8-555585cca6d1" />
+
+
+- Dashboard-- <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/32494fc8-c312-404f-bdfa-556d60f112eb" />
+
+- Rewrite Result--- <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/9761815e-f890-4ad2-afc8-dff424e2ac4c" />
+
+- History --- <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/5dac7129-194e-43f9-b00a-4b05ac0d7e27" />
+
 
 ---
 
