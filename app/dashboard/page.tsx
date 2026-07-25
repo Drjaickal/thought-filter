@@ -26,8 +26,7 @@ export default function DashboardPage() {
 
     return (
         <main className="min-h-screen bg-[#09090B] px-6 py-10">
-
-            <DashboardHeader />
+            <DashboardHeader totalThoughts={totalThoughts} />
 
             <DashboardStats
                 totalThoughts={totalThoughts}
@@ -47,12 +46,12 @@ export default function DashboardPage() {
                 result={result}
                 onCopy={copy}
             />
-                        <HistoryList
+
+            <HistoryList
                 thoughts={thoughts}
                 onCopy={copy}
                 onDelete={handleDelete}
             />
-
         </main>
     );
 }
