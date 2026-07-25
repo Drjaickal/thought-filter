@@ -1,3 +1,11 @@
+![Next.js](https://img.shields.io/badge/Next.js-16-black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
+![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748)
+![Gemini](https://img.shields.io/badge/Google-Gemini-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
+
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
