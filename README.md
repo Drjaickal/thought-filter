@@ -16,7 +16,7 @@ An AI-powered SaaS that rewrites emotional, impulsive, or unclear messages into 
 
 ### 🌐 Live Demo
 
-**https://YOUR_VERCEL_URL.vercel.app**
+**[https://YOUR_VERCEL_URL.vercel.app](https://thought-filter.vercel.app/)**
 
 </div>
 
