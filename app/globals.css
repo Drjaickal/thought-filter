@@ -13,7 +13,7 @@
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
 
-  --primary: oklch(0.205 0 0);
+  --primary: #16a34a;
   --primary-hover: #15803d;
   --primary-foreground: oklch(0.985 0 0);
 
@@ -24,10 +24,10 @@
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
 
-  --glass: rgba(22, 163, 74, 0.12);
+  --glass: rgba(22, 163, 74, 0.22);
   --glass-border: rgba(22, 163, 74, 0.2);
 
-  --shadow: rgba(22, 163, 74, 0.12);
+  --shadow: rgba(22, 163, 74, 0.35);
 
   --dot: rgba(17, 24, 39, 0.06);
 
@@ -85,7 +85,7 @@
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
 
-  --primary: oklch(0.922 0 0);
+  --primary: #f97316;
   --primary-hover: #ea580c;
   --primary-foreground: oklch(0.205 0 0);
 
@@ -96,10 +96,10 @@
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
 
-  --glass: rgba(249, 115, 22, 0.12);
+  --glass: rgba(249,115,22,.25);
   --glass-border: rgba(249, 115, 22, 0.2);
 
-  --shadow: rgba(249, 115, 22, 0.18);
+  --shadow: rgba(249,115,22,.45);
 
   --dot: rgba(255, 255, 255, 0.05);
 
@@ -289,7 +289,7 @@ body::after {
   border: 1px solid var(--glass-border);
 
   box-shadow:
-    0 10px 40px var(--shadow);
+    0 20px 60px var(--shadow)
 }
 
 /* =========================================================
@@ -448,9 +448,11 @@ a:hover {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
   html {
     @apply font-sans;
   }

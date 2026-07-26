@@ -8,21 +8,21 @@ export default function Hero() {
             </div>
 
             <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6">
-                <div className="inline-flex w-fit items-center rounded-full border border-primary/30 bg-card px-4 py-2 text-sm text-primary">
+                <div className="inline-flex w-fit items-center rounded-full border border-primary/20 bg-primary/10 px-4 py-2 text-sm font-medium text-primary backdrop-blur-xl">
                     ✨ AI Powered Communication Assistant
                 </div>
 
                 <h1 className="mt-8 max-w-5xl text-6xl font-black leading-tight tracking-tight text-foreground md:text-8xl">
-                    Think
-                    <span className="text-primary">
-                        {" Don't let emotions..."}
+                    Think{" "}
+                    <span className="bg-gradient-to-r from-primary to-primary bg-clip-text text-transparent drop-shadow-[0_0_40px_var(--shadow)]">
+                        Emotionally.
                     </span>
 
                     <br />
 
-                    Speak
-                    <span className="text-primary">
-                        {" Professionally."}
+                    Speak{" "}
+                    <span className="bg-gradient-to-r from-primary to-primary bg-clip-text text-transparent drop-shadow-[0_0_40px_var(--shadow)]">
+                        Professionally.
                     </span>
                 </h1>
 
@@ -35,7 +35,7 @@ export default function Hero() {
                 <div className="mt-12 flex flex-wrap gap-5">
                     <Link
                         href="/dashboard"
-                        className="rounded-xl bg-primary px-8 py-4 text-lg font-semibold text-primary-foreground transition hover:opacity-90"
+                        className="rounded-xl bg-primary px-8 py-4 text-lg font-semibold text-white transition hover:-translate-y-1 hover:shadow-[0_15px_40px_var(--shadow)]"
                     >
                         Start Free →
                     </Link>
@@ -44,19 +44,19 @@ export default function Hero() {
                         href="https://github.com/Drjaickal"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="rounded-xl border border-border px-8 py-4 text-lg text-foreground transition hover:border-primary hover:text-primary"
+                        className="rounded-xl border border-border px-8 py-4 text-lg text-foreground transition hover:border-primary hover:bg-primary/10 hover:text-primary"
                     >
                         GitHub
                     </a>
                 </div>
 
-                <div className="glass mt-24 rounded-3xl border border-border p-8 backdrop-blur">
+                <div className="glass shadow-glow mt-24 rounded-3xl border border-border p-8 backdrop-blur">
                     <div className="mb-4 flex items-center justify-between">
-                        <span className="text-primary text-sm uppercase tracking-widest">
+                        <span className="text-sm uppercase tracking-widest text-primary">
                             Live Preview
                         </span>
 
-                        <span className="rounded-full bg-green-500/15 px-3 py-1 text-xs text-green-400">
+                        <span className="rounded-full bg-primary/15 px-3 py-1 text-xs text-primary">
                             AI ONLINE
                         </span>
                     </div>
@@ -73,7 +73,7 @@ export default function Hero() {
                         </div>
 
                         <div>
-                            <p className="text-primary mb-2 text-sm">
+                            <p className="mb-2 text-sm text-primary">
                                 AI Rewrite
                             </p>
 
