@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { toast } from "sonner";
 
 import type { Thought } from "@/types/thought";
 
@@ -9,13 +10,20 @@ const DEFAULT_TONE = "PROFESSIONAL";
 export function useThoughts() {
     const [text, setText] = useState("");
     const [tone, setTone] = useState(DEFAULT_TONE);
+
+    // AI request loading
     const [loading, setLoading] = useState(false);
+
+    // History loading
+    const [historyLoading, setHistoryLoading] = useState(true);
 
     const [result, setResult] = useState("");
     const [thoughts, setThoughts] = useState<Thought[]>([]);
 
     const loadHistory = useCallback(async () => {
         try {
+            setHistoryLoading(true);
+
             const response = await fetch("/api/thoughts", {
                 cache: "no-store",
             });
@@ -29,13 +37,16 @@ export function useThoughts() {
             setThoughts(data);
         } catch (error) {
             console.error(error);
+            toast.error("Failed to load history.");
+        } finally {
+            setHistoryLoading(false);
         }
     }, []);
 
     useEffect(() => {
-        async function init() {
+        const init = async () => {
             await loadHistory();
-        }
+        };
 
         void init();
     }, [loadHistory]);
@@ -70,14 +81,15 @@ export function useThoughts() {
             }
 
             setResult(data.rewrite.rewrittenText);
-
             setText("");
+
+            toast.success("Thought rewritten successfully!");
 
             await loadHistory();
         } catch (error) {
             console.error(error);
 
-            alert(
+            toast.error(
                 error instanceof Error
                     ? error.message
                     : "Unknown error."
@@ -88,14 +100,6 @@ export function useThoughts() {
     }, [text, tone, loading, loadHistory]);
 
     const handleDelete = useCallback(async (id: string) => {
-        const confirmed = window.confirm(
-            "Delete this thought permanently?"
-        );
-
-        if (!confirmed) {
-            return;
-        }
-
         try {
             const response = await fetch(`/api/thoughts/${id}`, {
                 method: "DELETE",
@@ -112,10 +116,12 @@ export function useThoughts() {
             setThoughts((prev) =>
                 prev.filter((thought) => thought.id !== id)
             );
+
+            toast.success("Thought deleted successfully.");
         } catch (error) {
             console.error(error);
 
-            alert(
+            toast.error(
                 error instanceof Error
                     ? error.message
                     : "Delete failed."
@@ -126,10 +132,10 @@ export function useThoughts() {
     const copy = useCallback(async (value: string) => {
         try {
             await navigator.clipboard.writeText(value);
-            alert("Copied!");
+            toast.success("Copied to clipboard!");
         } catch (error) {
             console.error(error);
-            alert("Failed to copy.");
+            toast.error("Failed to copy.");
         }
     }, []);
 
@@ -148,6 +154,7 @@ export function useThoughts() {
         setTone,
 
         loading,
+        historyLoading,
 
         result,
 

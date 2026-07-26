@@ -1,21 +1,19 @@
 import type { MetadataRoute } from "next";
 
+const siteUrl = "https://thought-filter.vercel.app";
+
 export default function robots(): MetadataRoute.Robots {
-    const baseUrl = "https://thought-filter.vercel.app";
-
     return {
-        rules: [
-            {
-                userAgent: "*",
-                allow: "/",
-                disallow: [
-                    "/api/",
-                    "/dashboard/",
-                ],
-            },
-        ],
+        rules: {
+            userAgent: "*",
+            allow: "/",
+            disallow: [
+                "/api/",
+            ],
+        },
 
-        sitemap: `${baseUrl}/sitemap.xml`,
-        host: baseUrl,
+        sitemap: `${siteUrl}/sitemap.xml`,
+
+        host: siteUrl,
     };
 }

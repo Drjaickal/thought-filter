@@ -15,6 +15,7 @@ export default function DashboardPage() {
         tone,
         setTone,
         loading,
+        historyLoading,
         result,
         thoughts,
         totalThoughts,
@@ -50,6 +51,7 @@ export default function DashboardPage() {
 
                 <HistoryList
                     thoughts={thoughts}
+                    loading={historyLoading}
                     onCopy={copy}
                     onDelete={handleDelete}
                 />

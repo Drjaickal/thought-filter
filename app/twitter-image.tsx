@@ -2,9 +2,10 @@ import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 
+export const alt = "Thought Filter";
 export const size = {
     width: 1200,
-    height: 600,
+    height: 630,
 };
 
 export const contentType = "image/png";
@@ -14,35 +15,39 @@ export default function TwitterImage() {
         (
             <div
                 style={{
-                    width: "100%",
                     height: "100%",
+                    width: "100%",
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "center",
                     alignItems: "center",
-                    background: "#09090B",
+                    background:
+                        "linear-gradient(135deg, #111827 0%, #1f2937 45%, #f97316 100%)",
                     color: "white",
-                    fontFamily: "sans-serif",
+                    padding: "64px",
                 }}
             >
                 <div
                     style={{
-                        fontSize: 70,
+                        fontSize: 72,
                         fontWeight: 800,
+                        marginBottom: 24,
                     }}
                 >
-                    Thought
-                    <span style={{ color: "#F97316" }}> Filter</span>
+                    Thought Filter
                 </div>
 
                 <div
                     style={{
-                        marginTop: 24,
-                        fontSize: 30,
-                        color: "#A1A1AA",
+                        fontSize: 34,
+                        textAlign: "center",
+                        maxWidth: 900,
+                        lineHeight: 1.4,
+                        color: "#e5e7eb",
                     }}
                 >
-                    AI Communication Intelligence
+                    AI-powered communication assistant that transforms emotional thoughts
+                    into clear, confident, and professional messages.
                 </div>
             </div>
         ),

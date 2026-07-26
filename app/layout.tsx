@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Toaster } from "sonner";
 
 import { ThemeProvider } from "@/components/providers/theme-provider";
 
@@ -16,8 +17,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = "https://thought-filter.vercel.app";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://thought-filter.vercel.app"),
+  metadataBase: new URL(siteUrl),
+
+  applicationName: "Thought Filter",
 
   title: {
     default: "Thought Filter",
@@ -25,19 +30,19 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Rewrite your thoughts into clear, confident, and emotionally intelligent messages with AI. Improve communication instantly using Thought Filter.",
+    "Rewrite emotional thoughts into clear, confident, and professional communication using Google's Gemini AI.",
 
   keywords: [
     "AI",
+    "Gemini AI",
     "Thought Filter",
     "AI communication",
-    "AI rewriting",
-    "Gemini AI",
     "message rewriter",
-    "professional communication",
     "email rewriting",
-    "text improvement",
-    "communication intelligence",
+    "professional communication",
+    "communication assistant",
+    "AI productivity",
+    "text rewriting",
   ],
 
   authors: [
@@ -50,29 +55,74 @@ export const metadata: Metadata = {
 
   publisher: "Thought Filter",
 
+  category: "technology",
+
+  alternates: {
+    canonical: "/",
+  },
+
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+
   robots: {
     index: true,
     follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
 
   openGraph: {
-    title: "Thought Filter",
-    description:
-      "Rewrite your thoughts into clear, confident, and emotionally intelligent messages using AI.",
-    url: "https://thought-filter.vercel.app",
-    siteName: "Thought Filter",
-    locale: "en_US",
     type: "website",
+    locale: "en_US",
+    url: siteUrl,
+    siteName: "Thought Filter",
+
+    title: "Thought Filter",
+
+    description:
+      "Rewrite emotional thoughts into professional communication using AI.",
+
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Thought Filter",
+      },
+    ],
   },
 
   twitter: {
     card: "summary_large_image",
+
     title: "Thought Filter",
+
     description:
-      "AI-powered communication intelligence that rewrites your thoughts into better messages.",
+      "AI-powered communication assistant that rewrites emotional thoughts into better messages.",
+
+    images: ["/twitter-image"],
   },
 
-  category: "technology",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
+
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Thought Filter",
+  },
 };
 
 export default function RootLayout({
@@ -94,6 +144,15 @@ export default function RootLayout({
             enableSystem
           >
             {children}
+
+            <Toaster
+              position="top-right"
+              richColors
+              closeButton
+              expand={false}
+              duration={3000}
+              theme="system"
+            />
           </ThemeProvider>
         </body>
       </html>

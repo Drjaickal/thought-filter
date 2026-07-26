@@ -38,13 +38,13 @@ export default function DashboardStats({
                 const Icon = stat.icon;
 
                 return (
-                    <div
+                    <article
                         key={stat.title}
-                        className="glass rounded-2xl p-6 transition-all duration-300 hover:border-primary/40 hover:shadow-glow"
+                        className="glass group rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-glow"
                     >
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm text-muted">
+                                <p className="text-sm font-medium text-muted">
                                     {stat.title}
                                 </p>
 
@@ -53,11 +53,13 @@ export default function DashboardStats({
                                 </h3>
                             </div>
 
-                            <div className="rounded-xl bg-primary/10 p-4">
-                                <Icon className={`h-7 w-7 ${stat.color}`} />
+                            <div className="rounded-xl bg-primary/10 p-4 transition-colors group-hover:bg-primary/20">
+                                <Icon
+                                    className={`h-7 w-7 transition-transform duration-300 group-hover:scale-110 ${stat.color}`}
+                                />
                             </div>
                         </div>
-                    </div>
+                    </article>
                 );
             })}
         </section>

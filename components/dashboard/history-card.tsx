@@ -1,6 +1,21 @@
 "use client";
 
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
+
 import type { Thought } from "@/types/thought";
+
+import { Copy, Trash2 } from "lucide-react";
 
 type HistoryCardProps = {
     thought: Thought;
@@ -18,7 +33,7 @@ export default function HistoryCard({
     if (!rewrite) return null;
 
     return (
-        <article className="glass rounded-3xl p-6 transition-all duration-300 hover:shadow-glow hover:border-primary/40">
+        <article className="glass rounded-3xl border border-border p-6 transition-all duration-300 hover:border-primary/40 hover:shadow-glow">
             <div className="mb-6 flex items-center justify-between">
                 <div>
                     <h3 className="text-lg font-bold text-foreground">
@@ -54,7 +69,7 @@ export default function HistoryCard({
                     </p>
 
                     <div className="rounded-2xl border border-primary/20 bg-primary/5 p-4">
-                        <p className="whitespace-pre-wrap text-foreground">
+                        <p className="whitespace-pre-wrap break-words text-foreground">
                             {rewrite.rewrittenText}
                         </p>
                     </div>
@@ -88,18 +103,54 @@ export default function HistoryCard({
 
                 <div className="flex flex-wrap gap-3">
                     <button
+                        type="button"
                         onClick={() => onCopy(rewrite.rewrittenText)}
-                        className="rounded-xl border border-border bg-card px-5 py-2 font-medium text-foreground transition-all hover:border-primary hover:text-primary"
+                        className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-5 py-2 font-medium text-foreground transition-all duration-200 hover:border-primary hover:text-primary active:scale-95"
+                        aria-label="Copy rewritten text"
                     >
-                        📋 Copy
+                        <Copy className="h-4 w-4" />
+                        Copy
                     </button>
 
-                    <button
-                        onClick={() => onDelete(thought.id)}
-                        className="rounded-xl bg-red-600 px-5 py-2 font-medium text-white transition hover:bg-red-700"
-                    >
-                        🗑 Delete
-                    </button>
+                    <AlertDialog>
+                        <AlertDialogTrigger
+                            render={
+                                <Button
+                                    variant="destructive"
+                                    className="rounded-xl"
+                                />
+                            }
+                        >
+                            <Trash2 className="mr-2 h-4 w-4" />
+                            Delete
+                        </AlertDialogTrigger>
+
+                        <AlertDialogContent>
+                            <AlertDialogHeader>
+                                <AlertDialogTitle>
+                                    Delete this thought?
+                                </AlertDialogTitle>
+
+                                <AlertDialogDescription>
+                                    This action cannot be undone. This will permanently remove
+                                    the thought and its rewrite history.
+                                </AlertDialogDescription>
+                            </AlertDialogHeader>
+
+                            <AlertDialogFooter>
+                                <AlertDialogCancel>
+                                    Cancel
+                                </AlertDialogCancel>
+
+                                <AlertDialogAction
+                                    variant="destructive"
+                                    onClick={() => onDelete(thought.id)}
+                                >
+                                    Delete
+                                </AlertDialogAction>
+                            </AlertDialogFooter>
+                        </AlertDialogContent>
+                    </AlertDialog>
                 </div>
             </div>
         </article>
